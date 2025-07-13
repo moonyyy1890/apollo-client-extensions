@@ -1,0 +1,99 @@
+.country-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.country-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.country-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.country-emoji {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.country-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.country-code {
+  margin: 0.25rem 0 0 0;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.country-info {
+  margin-bottom: 1rem;
+}
+
+.country-info p {
+  margin: 0.5rem 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.details-button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.details-button:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.details-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.country-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.languages {
+  margin-top: 1rem;
+}
+
+.languages ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.languages li {
+  margin: 0.25rem 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #ffeaea;
+  border-radius: 4px;
+}
