@@ -7,9 +7,14 @@ import { useEffect, useState } from "react";
 import { useApolloClient, ApolloError } from "@apollo/client";
 
 interface CountryListState {
-  data: GetCountriesQuery | undefined;
+  data:
+    | (GetCountriesQuery & {
+        extensions: {
+          noOfResults?: number;
+        };
+      })
+    | undefined;
   loading: boolean;
-  extensions?: { noOfResults?: number };
   error?: ApolloError;
 }
 
@@ -20,11 +25,11 @@ const CountryList = () => {
   const [result, setResult] = useState<CountryListState>({
     data: undefined,
     loading: true,
-    extensions: undefined,
     error: undefined,
   });
 
-  const { data, loading, extensions, error } = result;
+  const { data, loading, error } = result;
+  console.log("state data", data);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -38,22 +43,13 @@ const CountryList = () => {
 
         console.log("📊 client.query result:", queryResult);
         console.log(
-          "🔧 Extensions from queryResult.extensions:",
-          (queryResult as any).extensions
-        );
-        console.log(
           "🔧 Extensions from queryResult.data.extensions:",
           (queryResult.data as any).extensions
         );
 
-        // Try to get extensions from result.data.extensions (set by extensionsLink)
-        const extensions = (queryResult.data as any).extensions;
-        console.log("🎯 Final extensions to use:", extensions);
-
         setResult({
           data: queryResult.data,
           loading: false,
-          extensions: extensions,
           error: queryResult.error,
         });
       } catch (err) {
@@ -61,7 +57,6 @@ const CountryList = () => {
         setResult({
           data: undefined,
           loading: false,
-          extensions: undefined,
           error: err as ApolloError,
         });
       }
@@ -92,7 +87,7 @@ const CountryList = () => {
     <div className="country-list">
       <h2>
         Countries Around the World
-        {extensions && ` (${extensions.noOfResults || "N/A"})`}
+        {data?.extensions.noOfResults && ` (${data.extensions.noOfResults || "N/A"})`}
       </h2>
 
       <div className="countries-grid">

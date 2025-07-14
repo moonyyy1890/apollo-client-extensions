@@ -15,11 +15,11 @@ import App from "./App.tsx";
 import { worker } from "./mocks/browser";
 
 // Start MSW worker in development
-// if (import.meta.env.DEV) {
+if (import.meta.env.DEV) {
 worker.start({
   onUnhandledRequest: "bypass",
 });
-// }
+}
 
 export const extensionsLink = new ApolloLink((operation, forward) => {
   return new Observable((observer) => {
